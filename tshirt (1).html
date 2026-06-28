@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THREAD — Premium T-Shirts</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:    #0F0F0F;
+    --paper:  #F7F5F0;
+    --ash:    #C8C4BC;
+    --accent: #D94F2B;
+    --light:  #EDEAE4;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--ink); overflow-x: hidden; }
+
+  /* NAV */
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 4rem; border-bottom: 1px solid var(--ash); position: sticky; top: 0; background: var(--paper); z-index: 100; }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.12em; color: var(--ink); }
+  .logo span { color: var(--accent); }
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  nav ul li a { text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); transition: color 0.2s; }
+  nav ul li a:hover { color: var(--accent); }
+  .nav-cta { background: var(--ink); color: var(--paper) !important; padding: 0.5rem 1.2rem; }
+  .nav-cta:hover { background: var(--accent) !important; }
+
+  /* HERO */
+  .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 88vh; }
+  .hero-text { padding: 5rem 4rem; display: flex; flex-direction: column; justify-content: center; gap: 2rem; }
+  .eyebrow { font-family: 'Space Mono', monospace; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
+  h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 7vw, 7.5rem); line-height: 0.92; letter-spacing: 0.02em; }
+  h1 .outline { -webkit-text-stroke: 2px var(--ink); color: transparent; }
+  .hero-desc { font-size: 1rem; line-height: 1.7; color: #555; max-width: 400px; font-weight: 300; }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--accent); color: var(--paper); border: none; padding: 0.9rem 2.2rem; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: transform 0.15s, background 0.2s; }
+  .btn-primary:hover { background: var(--ink); transform: translateY(-2px); }
+  .btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); padding: 0.9rem 2.2rem; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+  .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+  .hero-visual { background: var(--light); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .tshirt-wrap { position: relative; z-index: 2; animation: float 4s ease-in-out infinite; }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+  .tshirt-svg { width: 340px; height: auto; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.12)); }
+  .big-letter { position: absolute; font-family: 'Bebas Neue', sans-serif; font-size: 22rem; color: rgba(0,0,0,0.04); user-select: none; line-height: 1; bottom: -2rem; right: -1rem; }
+  .badge { position: absolute; top: 2.5rem; right: 2.5rem; width: 80px; height: 80px; background: var(--accent); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--paper); font-family: 'Space Mono', monospace; font-size: 0.65rem; text-align: center; line-height: 1.3; text-transform: uppercase; }
+
+  /* MARQUEE */
+  .marquee-bar { background: var(--ink); color: var(--paper); padding: 0.85rem 0; overflow: hidden; white-space: nowrap; }
+  .marquee-inner { display: inline-block; animation: scroll 18s linear infinite; }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-inner span { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.12em; margin-right: 3rem; color: var(--paper); }
+  .marquee-inner span.dot { color: var(--accent); margin-right: 3rem; }
+
+  /* FEATURES */
+  .features { padding: 6rem 4rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+  .feature { border-top: 2px solid var(--ash); padding-top: 2rem; }
+  .feat-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .feature h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.05em; margin-bottom: 0.6rem; }
+  .feature p { font-size: 0.9rem; line-height: 1.7; color: #666; font-weight: 300; }
+
+  /* SECTION HEADER */
+  .section-header { padding: 4rem 4rem 2rem; display: flex; justify-content: space-between; align-items: flex-end; }
+  .section-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 4vw, 4rem); letter-spacing: 0.05em; }
+  .see-all { font-family: 'Space Mono', monospace; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 2px; }
+
+  /* PRODUCT GRID */
+  .products { padding: 0 4rem 6rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .card { cursor: pointer; position: relative; overflow: hidden; text-decoration: none; color: inherit; display: block; }
+  .card-img { background: var(--light); height: 300px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; transition: background 0.3s; }
+  .card:hover .card-img { background: #e5e1d8; }
+  .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+  .card:hover .card-img img { transform: scale(1.06); }
+  .tag { position: absolute; top: 1rem; left: 1rem; background: var(--accent); color: var(--paper); font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; text-transform: uppercase; z-index: 2; }
+  .card-info { padding: 1.2rem 0 0; }
+  .card-info h4 { font-weight: 500; font-size: 0.95rem; margin-bottom: 0.3rem; }
+  .card-info .price { font-family: 'Space Mono', monospace; font-size: 0.85rem; color: var(--accent); }
+  .shop-link { display: inline-block; margin-top: 0.6rem; font-size: 0.78rem; color: #888; font-family: 'Space Mono', monospace; }
+
+  /* COLORS STRIP */
+  .colors-strip { padding: 5rem 4rem; background: var(--ink); display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; color: var(--paper); }
+  .colors-strip h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; letter-spacing: 0.04em; line-height: 1; margin-bottom: 1rem; }
+  .colors-strip p { color: var(--ash); font-weight: 300; line-height: 1.7; font-size: 0.95rem; }
+  .palette { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.8rem; }
+  .swatch { height: 80px; display: flex; align-items: flex-end; padding: 0.5rem; font-family: 'Space Mono', monospace; font-size: 0.6rem; color: rgba(255,255,255,0.5); transition: transform 0.2s; cursor: pointer; }
+  .swatch:hover { transform: scaleY(1.06); }
+
+  /* NEWSLETTER */
+  .newsletter { padding: 5rem 4rem; text-align: center; border-top: 1px solid var(--ash); }
+  .newsletter h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+  .newsletter p { color: #666; margin-bottom: 2rem; font-weight: 300; }
+  .email-form { display: flex; gap: 0; max-width: 480px; margin: 0 auto; }
+  .email-form input { flex: 1; padding: 0.9rem 1.2rem; border: 1.5px solid var(--ink); border-right: none; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; background: var(--paper); outline: none; }
+  .email-form button { background: var(--ink); color: var(--paper); border: 1.5px solid var(--ink); padding: 0.9rem 1.8rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
+  .email-form button:hover { background: var(--accent); border-color: var(--accent); }
+
+  /* FOOTER */
+  footer { background: var(--ink); color: var(--ash); padding: 3rem 4rem; display: flex; justify-content: space-between; align-items: center; }
+  footer .logo { color: var(--paper); }
+  footer p { font-size: 0.8rem; letter-spacing: 0.05em; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    nav ul { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-text { padding: 3rem 2rem; }
+    .hero-visual { min-height: 320px; }
+    .features { padding: 4rem 2rem; grid-template-columns: 1fr; }
+    .products { padding: 0 2rem 4rem; grid-template-columns: repeat(2, 1fr); }
+    .section-header { padding: 3rem 2rem 1.5rem; }
+    .colors-strip { padding: 4rem 2rem; grid-template-columns: 1fr; }
+    .newsletter { padding: 4rem 2rem; }
+    footer { padding: 2rem; flex-direction: column; gap: 1rem; text-align: center; }
+  }
+  @media (max-width: 500px) {
+    .products { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">THRE<span>A</span>D</div>
+  <ul>
+    <li><a href="#">Shop</a></li>
+    <li><a href="#">Collections</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="https://my-store-1107322.creator-spring.com/" target="_blank" class="nav-cta">Buy Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="eyebrow">Anime · Culture · Street — SS 2026</p>
+    <h1>WEAR<br>WHAT<br>MATTERS<span class="outline">.</span></h1>
+    <p class="hero-desc">From One Piece to Samurai culture — graphic tees for fans who live the story. Every design ships worldwide.</p>
+    <div class="hero-actions">
+      <a href="https://my-store-1107322.creator-spring.com/" target="_blank"><button class="btn-primary">Shop Collection</button></a>
+      <a href="https://my-store-1107322.creator-spring.com/" target="_blank"><button class="btn-ghost">Visit Store</button></a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="tshirt-wrap">
+      <img src="https://mockup-api.teespring.com/v3/image/pGQLN-hz0kHvxHFPqPvYepRjFEM/500/500.jpg"
+           alt="Monkey D. Luffy Tee"
+           style="width:300px;height:300px;object-fit:contain;filter:drop-shadow(0 20px 40px rgba(0,0,0,0.2));">
+    </div>
+    <div class="big-letter">T</div>
+    <div class="badge">New<br>Drop<br>2026</div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-inner">
+    <span>ANIME COLLECTION</span><span class="dot">✦</span>
+    <span>ONE PIECE</span><span class="dot">✦</span>
+    <span>AOT FANS</span><span class="dot">✦</span>
+    <span>SAMURAI VIBES</span><span class="dot">✦</span>
+    <span>RADHA KRISHNA</span><span class="dot">✦</span>
+    <span>SHIPS WORLDWIDE</span><span class="dot">✦</span>
+    <span>ANIME COLLECTION</span><span class="dot">✦</span>
+    <span>ONE PIECE</span><span class="dot">✦</span>
+    <span>AOT FANS</span><span class="dot">✦</span>
+    <span>SAMURAI VIBES</span><span class="dot">✦</span>
+    <span>RADHA KRISHNA</span><span class="dot">✦</span>
+    <span>SHIPS WORLDWIDE</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="feature">
+    <div class="feat-icon">🎌</div>
+    <h3>Anime & Culture</h3>
+    <p>Designs inspired by the biggest anime series and Indian culture. Wear your fandom with pride.</p>
+  </div>
+  <div class="feature">
+    <div class="feat-icon">🌍</div>
+    <h3>Ships Worldwide</h3>
+    <p>Powered by Creator Spring. Order from anywhere in the world and get it delivered to your door.</p>
+  </div>
+  <div class="feature">
+    <div class="feat-icon">🎨</div>
+    <h3>Unique Designs</h3>
+    <p>Each graphic is crafted exclusively for this store. You won't find these anywhere else.</p>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<div class="section-header">
+  <h2>The Collection</h2>
+  <a href="https://my-store-1107322.creator-spring.com/" target="_blank" class="see-all">View all →</a>
+</div>
+<section class="products">
+
+  <!-- 1: Monkey D. Luffy -->
+  <a class="card" href="https://my-store-1107322.creator-spring.com/listing/anime-one-piece-monkey-di-luff" target="_blank">
+    <div class="card-img">
+      <span class="tag">Bestseller</span>
+      <img src="https://mockup-api.teespring.com/v3/image/pGQLN-hz0kHvxHFPqPvYepRjFEM/500/500.jpg" alt="Monkey D. Luffy Tee">
+    </div>
+    <div class="card-info">
+      <h4>Monkey D. Luffy</h4>
+      <div class="price">Shop Now →</div>
+      <span class="shop-link">One Piece Collection</span>
+    </div>
+  </a>
+
+  <!-- 2: Samurai -->
+  <a class="card" href="https://my-store-1107322.creator-spring.com/listing/samurai-4200" target="_blank">
+    <div class="card-img">
+      <span class="tag">New</span>
+      <img src="https://mockup-api.teespring.com/v3/image/GBsowZ-B_L5lqLnkjU5SVFa-L5c/500/500.jpg" alt="Samurai Tee">
+    </div>
+    <div class="card-info">
+      <h4>Samurai</h4>
+      <div class="price">Shop Now →</div>
+      <span class="shop-link">Street Culture</span>
+    </div>
+  </a>
+
+  <!-- 3: AOT Fans -->
+  <a class="card" href="https://my-store-1107322.creator-spring.com/listing/new-aot-fans" target="_blank">
+    <div class="card-img">
+      <span class="tag">New</span>
+      <img src="https://mockup-api.teespring.com/v3/image/LmsEtjVw0iQzeWx6FYA0PGviULQ/500/500.jpg" alt="AOT Fans Tee">
+    </div>
+    <div class="card-info">
+      <h4>AOT Fans</h4>
+      <div class="price">Shop Now →</div>
+      <span class="shop-link">Attack on Titan</span>
+    </div>
+  </a>
+
+  <!-- 4: One Piece -->
+  <a class="card" href="https://my-store-1107322.creator-spring.com/listing/dressup_7-spring" target="_blank">
+    <div class="card-img">
+      <img src="https://mockup-api.teespring.com/v3/image/K343mauvcv9hShUtBNQrI-wvYiU/500/500.jpg" alt="One Piece Tee">
+    </div>
+    <div class="card-info">
+      <h4>One Piece</h4>
+      <div class="price">Shop Now →</div>
+      <span class="shop-link">One Piece Collection</span>
+    </div>
+  </a>
+
+  <!-- 5: Luffy A Pirate -->
+  <a class="card" href="https://my-store-1107322.creator-spring.com/listing/luffy-a-pirate" target="_blank">
+    <div class="card-img">
+      <img src="https://mockup-api.teespring.com/v3/image/_YO7k-RSjyGBQkMB_fJczM0Ubik/500/500.jpg" alt="Luffy A Pirate Tee">
+    </div>
+    <div class="card-info">
+      <h4>Luffy — A Pirate</h4>
+      <div class="price">Shop Now →</div>
+      <span class="shop-link">One Piece Collection</span>
+    </div>
+  </a>
+
+  <!-- 6: Radha Krishna -->
+  <a class="card" href="https://my-store-1107322.creator-spring.com/listing/radha-krishna-june-2026" target="_blank">
+    <div class="card-img">
+      <span class="tag">New</span>
+      <img src="https://mockup-api.teespring.com/v3/image/BmPawBWURe73qasjgBTF6nthbvs/500/500.jpg" alt="Radha Krishna Tee">
+    </div>
+    <div class="card-info">
+      <h4>Radha Krishna</h4>
+      <div class="price">Shop Now →</div>
+      <span class="shop-link">Divine Collection</span>
+    </div>
+  </a>
+
+</section>
+
+<!-- COLORS STRIP -->
+<section class="colors-strip">
+  <div>
+    <h2>ANIME.<br>CULTURE.<br>STREET.</h2>
+    <p>Every design tells a story. From the seas of One Piece to the walls of Attack on Titan — wear what moves you.</p>
+    <br>
+    <a href="https://my-store-1107322.creator-spring.com/" target="_blank">
+      <button class="btn-primary" style="margin-top:1rem">Explore Full Store</button>
+    </a>
+  </div>
+  <div class="palette">
+    <div class="swatch" style="background:#D94F2B">Ember</div>
+    <div class="swatch" style="background:#0F0F0F">Black</div>
+    <div class="swatch" style="background:#F7F5F0;color:#999">White</div>
+    <div class="swatch" style="background:#3B4252">Steel</div>
+    <div class="swatch" style="background:#4C7C59">Moss</div>
+    <div class="swatch" style="background:#5E81AC">Blue</div>
+    <div class="swatch" style="background:#BF616A">Blush</div>
+    <div class="swatch" style="background:#E5D5B5">Sand</div>
+    <div class="swatch" style="background:#8B4513">Brown</div>
+    <div class="swatch" style="background:#2E3440">Navy</div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <h2>First to Know, First to Wear</h2>
+  <p>New drops, restocks, and exclusive designs — straight to your inbox.</p>
+  <div class="email-form">
+    <input type="email" placeholder="your@email.com">
+    <button>Subscribe</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">THRE<span>A</span>D</div>
+  <p>© 2026 Thread. All rights reserved.</p>
+  <a href="https://my-store-1107322.creator-spring.com/" target="_blank" style="color:var(--accent);font-size:0.8rem;text-decoration:none;">Visit Store →</a>
+</footer>
+
+</body>
+</html>
